@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer'
 export default class Builder {
   static async build(viewport) {
     const launchOptions = {
-      headless: true,
+      headless: false,
       slowMo: 0,
       args: ['--no-sandbox', '--disable-setui-sandbox', '--disable-web-security']
     }

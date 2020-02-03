@@ -16,25 +16,26 @@ describe("Mocha steps demo", () => {
 
   step('should load homepage', async () => {
     await page.goto("http://zero.webappsecurity.com/index.html")
-    const signInButton = await page.isElementVisible('#signin_button')
-    expect(signInButton).to.be.true;
+    expect(await page.isElementVisible('#signin_button')).to.be.true;
   })
 
   step('should display login form', async () => {
     await page.waitAndClick('#signin_button')
-    const loginForm = await page.isElementVisible('#login_form')
-    expect(loginForm).to.be.true;
-    const signInButton = await page.isElementVisible('#signin_button')
-    expect(signInButton).to.be.false;
+    expect(await page.isElementVisible('#login_form')).to.be.true;
+    expect(await page.isElementVisible('#signin_button')).to.be.false;
   })
 
   step('should login to application', async () => {
     await page.waitAndType('#user_login', "username")
     await page.waitAndType('#user_password', "password")
     await page.waitAndClick('.btn-primary')
-    const navbar = await page.isElementVisible('.nav-tabs')
-    expect(navbar).to.be.true
+    expect(await page.isElementVisible('.nav-tabs')).to.be.true
   })
+
+  step('should have 6 navbar links', async () => {
+    expect(await page.getCount(".nav-tabs li")).to.equal(6)
+  })
+
 
 
 })
