@@ -20,7 +20,7 @@ var Builder = function () {
     value: async function build(viewport) {
       var launchOptions = {
         headless: false,
-        slowMo: 50,
+        slowMo: 0,
         args: ['--no-sandbox', '--disable-setui-sandbox', '--disable-web-security']
       };
       var browser = await _puppeteer2.default.launch(launchOptions);

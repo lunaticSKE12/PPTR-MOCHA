@@ -8,13 +8,19 @@ var _builder = require('../builder');
 
 var _builder2 = _interopRequireDefault(_builder);
 
+var _LoginPage = require('../pages/LoginPage');
+
+var _LoginPage2 = _interopRequireDefault(_LoginPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 describe("Mocha steps demo", function () {
   var page = void 0;
+  var loginPage = void 0;
 
   before(async function () {
     page = await _builder2.default.build('Desktop');
+    loginPage = await new _LoginPage2.default(page);
   });
 
   after(async function () {
@@ -33,9 +39,10 @@ describe("Mocha steps demo", function () {
   });
 
   (0, _mochaSteps.step)('should login to application', async function () {
-    await page.waitAndType('#user_login', "username");
-    await page.waitAndType('#user_password', "password");
-    await page.waitAndClick('.btn-primary');
+    // await page.waitAndType('#user_login', "username")
+    // await page.waitAndType('#user_password', "password")
+    // await page.waitAndClick('.btn-primary')
+    await loginPage.login("username", 'password');
     (0, _chai.expect)((await page.isElementVisible('.nav-tabs'))).to.be.true;
   });
 
