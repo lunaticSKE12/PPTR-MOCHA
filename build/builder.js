@@ -19,7 +19,7 @@ var Builder = function () {
     key: 'build',
     value: async function build(viewport) {
       var launchOptions = {
-        headless: true,
+        headless: false,
         slowMo: 0,
         args: ['--no-sandbox', '--disable-setui-sandbox', '--disable-web-security']
       };
@@ -57,6 +57,20 @@ var Builder = function () {
 
     this.page = page;
   }
+
+  _createClass(Builder, [{
+    key: 'waitAndClick',
+    value: async function waitAndClick(selector) {
+      await this.page.waitForSelector(selector);
+      await this.page.click(selector);
+    }
+  }, {
+    key: 'waitAndType',
+    value: async function waitAndType(selector, text) {
+      await this.page.waitForSelector(selector);
+      await this.page.type(selector, text);
+    }
+  }]);
 
   return Builder;
 }();
